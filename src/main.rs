@@ -1,34 +1,12 @@
-use std::io;
-use rand::Rng;
-
-
+mod linked_list;
+use linked_list::LinkedList;
 fn main() {
-    loop {
-        println!("Guess the number!");
-        println!("Please input your guess.");
-
-        let mut guess = String::new();
-        let number = rand::thread_rng().gen_range(1..=100);
-
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-
-        if (guess.trim() == "quit") {
-            println!("Exiting the game. Goodbye!");
-            break;
-        }
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        if (guess == number) {
-            println!("You guessed the number!");
-            break;
-        } else {
-            println!("Wrong guess, the number was: {number}");
-        }
-    }
+    let mut list = LinkedList::new();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+    println!("{:?}", list.peek());
+    println!("{:?}", list.get(1));
+    println!("{:?}", list.pop());
+    println!("{:?}", list.length());
 }
